@@ -1,12 +1,31 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using SignalR.EntityLayer.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SignalR.DataAccessLayer.Concrete
 {
-    internal class SignalRContext
+    public class SignalRContext : DbContext
     {
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer("server=Kadir\\SQLEXPRESS;initial catalog=SignalRDb;integrated security=true ;TrustServerCertificate=true");
+        }
+
+        public DbSet<About> Abouts { get; set; }
+        public DbSet<Booking> Bookings { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<ContactUs> Contacts { get; set; }
+        public DbSet<Discount> Discounts { get; set; }
+        public DbSet<Feature> Features { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<SocialMedia> SocialMedias { get; set; }
+        public DbSet<Testimonial> Testimonials { get; set; }
+
+
     }
 }
